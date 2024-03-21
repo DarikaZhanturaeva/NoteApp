@@ -14,10 +14,18 @@
         android:id="@+id/obBoardFragment"
         android:name="com.geeks.noteapp.ui.fragments.onboard.OnBoardFragment"
         android:label="fragment_ob_board"
-        tools:layout="@layout/fragment_on_board" />
+        tools:layout="@layout/fragment_on_board" >
+        <action
+            android:id="@+id/action_obBoardFragment_to_noteFragment"
+            app:destination="@id/noteFragment" />
+    </fragment>
     <fragment
         android:id="@+id/onBoardPagingFragment"
         android:name="com.geeks.noteapp.ui.fragments.onboard.OnBoardPagingFragment"
         android:label="fragment_on_board_paging"
-        tools:layout="@layout/fragment_on_board_paging" />
+        tools:layout="@layout/fragment_on_board_paging" >
+        <action
+            android:id="@+id/action_onBoardPagingFragment_to_noteFragment"
+            app:destination="@id/noteFragment" />
+    </fragment>
 </navigation>

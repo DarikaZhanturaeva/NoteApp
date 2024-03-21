@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.geeks.noteapp.R
+import com.geeks.noteapp.data.Pref
 import com.geeks.noteapp.databinding.FragmentOnBoardBinding
 import com.geeks.noteapp.ui.adapter.OnBoardViewPagerAdapter
 
@@ -29,12 +30,15 @@ class OnBoardFragment : Fragment() {
         initialize()
         setupListener()
         btnGetStarted()
+        openHome()
     }
 
 
     private fun initialize() {
-        binding.viewPager2.adapter = OnBoardViewPagerAdapter(this)
+        binding.viewPager2.adapter = OnBoardViewPagerAdapter(this@OnBoardFragment)
+        Pref.unit(requireContext())
     }
+
 
     private fun setupListener() = with(binding.viewPager2) {
         binding.tvSend.setOnClickListener {
@@ -42,7 +46,8 @@ class OnBoardFragment : Fragment() {
                 setCurrentItem(currentItem + 2, true)
             }
         }
-        binding.tvGetStarted.setOnClickListener{
+        binding.tvGetStarted.setOnClickListener {
+            findNavController().navigate(R.id.noteFragment)
         }
     }
 
@@ -69,4 +74,9 @@ class OnBoardFragment : Fragment() {
             }
         })
     }
+
+    private fun openHome() {
+        Pref.isOnBoardShown = true
+    }
+
 }

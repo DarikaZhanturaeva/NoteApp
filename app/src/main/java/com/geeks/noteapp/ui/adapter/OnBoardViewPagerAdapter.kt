@@ -3,6 +3,7 @@ package com.geeks.noteapp.ui.adapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.geeks.noteapp.ui.fragments.onboard.OnBoardFragment
 import com.geeks.noteapp.ui.fragments.onboard.OnBoardPagingFragment
 import com.geeks.noteapp.ui.fragments.onboard.OnBoardPagingFragment.Companion.ARG_ONBOARD_POSITION
 
