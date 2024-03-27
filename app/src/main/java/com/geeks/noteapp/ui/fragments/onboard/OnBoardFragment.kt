@@ -9,7 +9,7 @@ import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.geeks.noteapp.R
-import com.geeks.noteapp.data.Pref
+import com.geeks.noteapp.utils.Pref
 import com.geeks.noteapp.databinding.FragmentOnBoardBinding
 import com.geeks.noteapp.ui.adapter.OnBoardViewPagerAdapter
 
@@ -78,5 +78,4 @@ class OnBoardFragment : Fragment() {
     private fun openHome() {
         Pref.isOnBoardShown = true
     }
-
 }

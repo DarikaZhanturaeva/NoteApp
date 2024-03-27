@@ -2,9 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#131212"
@@ -12,6 +14,7 @@
         android:padding="10dp">
 
         <ImageView
+            android:id="@+id/img_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -21,14 +24,14 @@
             android:id="@+id/tv_note"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="110dp"
+            android:layout_marginHorizontal="106dp"
             android:text="@string/note"
             android:textColor="#b1b1b1"
             android:textSize="22sp"
             android:textStyle="bold" />
 
         <ImageView
-
+            android:id="@+id/img_shape"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -47,8 +50,8 @@
             android:id="@+id/search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="22dp"
             android:layout_margin="15dp"
+            android:layout_marginHorizontal="22dp"
             android:background="@drawable/bg_edit"
             android:hint="Поиск заметок"
             android:padding="18dp"
@@ -56,6 +59,13 @@
             android:textAlignment="center"
             android:textColorHint="#3b3b3b"
             android:textSize="16sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:listitem="@layout/item_note"/>
 
     </LinearLayout>
 

@@ -5,4 +5,6 @@
     <string name="tvSkip">Пропустить</string>
     <string name="get_started">Начать работу</string>
     <string name="note">Заметки</string>
+    <string name="ready">Готово</string>
+    <string name="title">Title</string>
 </resources>
