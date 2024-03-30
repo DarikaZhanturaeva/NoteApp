@@ -9,23 +9,27 @@
         android:id="@+id/noteFragment"
         android:name="com.geeks.noteapp.ui.fragments.note.NoteFragment"
         android:label="fragment_note"
-        tools:layout="@layout/fragment_note" />
+        tools:layout="@layout/fragment_note" >
+        <action
+            android:id="@+id/action_noteFragment_to_noteDetailFragment"
+            app:destination="@id/noteDetailFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
     <fragment
         android:id="@+id/obBoardFragment"
         android:name="com.geeks.noteapp.ui.fragments.onboard.OnBoardFragment"
         android:label="fragment_ob_board"
-        tools:layout="@layout/fragment_on_board" >
-        <action
-            android:id="@+id/action_obBoardFragment_to_noteFragment"
-            app:destination="@id/noteFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_on_board" />
     <fragment
         android:id="@+id/onBoardPagingFragment"
         android:name="com.geeks.noteapp.ui.fragments.onboard.OnBoardPagingFragment"
         android:label="fragment_on_board_paging"
-        tools:layout="@layout/fragment_on_board_paging" >
-        <action
-            android:id="@+id/action_onBoardPagingFragment_to_noteFragment"
-            app:destination="@id/noteFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_on_board_paging" />
+    <fragment
+        android:id="@+id/noteDetailFragment"
+        android:name="com.geeks.noteapp.ui.fragments.note.NoteDetailFragment"
+        android:label="fragment_note_detail"
+        tools:layout="@layout/fragment_note_detail" />
 </navigation>

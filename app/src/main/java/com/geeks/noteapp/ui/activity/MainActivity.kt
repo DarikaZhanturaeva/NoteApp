@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.geeks.noteapp.R
-import com.geeks.noteapp.data.Pref
+import com.geeks.noteapp.utils.Pref
 import com.geeks.noteapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -28,5 +28,7 @@ class MainActivity : AppCompatActivity() {
         }else{
             navController.navigate(R.id.obBoardFragment)
         }
+        applicationContext.deleteDatabase("note.database")
+
     }
 }

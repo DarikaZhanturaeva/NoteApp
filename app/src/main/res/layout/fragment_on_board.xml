@@ -34,15 +34,4 @@
         android:textStyle="bold"
         android:visibility="gone" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|bottom"
-        android:layout_marginBottom="50dp"
-        android:background="@color/black"
-        app:tabBackground="@drawable/tab"
-        app:tabGravity="center"
-        app:tabIndicatorHeight="0dp"
-        app:tabMaxWidth="30dp" />
-
 </FrameLayout>
