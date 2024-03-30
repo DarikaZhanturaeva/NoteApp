@@ -28,4 +28,9 @@
             android:id="@+id/action_onBoardPagingFragment_to_noteFragment"
             app:destination="@id/noteFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.geeks.noteapp.signup.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" />
 </navigation>

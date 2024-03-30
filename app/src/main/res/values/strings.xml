@@ -5,4 +5,9 @@
     <string name="tvSkip">Пропустить</string>
     <string name="get_started">Начать работу</string>
     <string name="note">Заметки</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="send_code">Получить код</string>
+    <string name="your_code">Ваш код</string>
+    <string name="phone">+996 707 777 777</string>
+    <string name="sign_up">Регистрация по номеру</string>
 </resources>
