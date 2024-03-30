@@ -15,7 +15,7 @@ class App : Application() {
         super.onCreate()
         val sharedPreferences = Pref
         sharedPreferences.unit(this)
-        appDatabase=getInstance()
+        getInstance()
     }
 
     fun getInstance(): AppDatabase? {

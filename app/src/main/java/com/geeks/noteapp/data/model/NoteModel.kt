@@ -6,10 +6,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "noteModel")
 data class NoteModel(
-    val title: String,
-    val text: String,
-    val time: String,
-    val date: String,
+    val title: String?=null,
+    val text: String?=null,
+    val time: String?=null,
+    val date: String?=null,
     val color: Int = Color.BLACK
 
 ) {

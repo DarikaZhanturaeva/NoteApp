@@ -47,7 +47,9 @@ class OnBoardFragment : Fragment() {
             }
         }
         binding.tvGetStarted.setOnClickListener {
-            findNavController().navigate(R.id.noteFragment)
+            if (binding.viewPager2.currentItem == 2) {
+                findNavController().navigate(R.id.noteFragment)
+            }
         }
     }
 
