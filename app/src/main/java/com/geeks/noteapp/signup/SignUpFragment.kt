@@ -16,11 +16,16 @@ import androidx.navigation.fragment.findNavController
 import com.geeks.noteapp.R
 import com.geeks.noteapp.data.Pref
 import com.geeks.noteapp.databinding.FragmentSignUpBinding
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.Firebase
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
@@ -32,8 +37,22 @@ class SignUpFragment : Fragment() {
 
     private lateinit var binding: FragmentSignUpBinding
     private var auth: FirebaseAuth? = null
-    private var storedVerificationId:String = ""
-    private lateinit var resendToken :PhoneAuthProvider.ForceResendingToken
+    private var storedVerificationId: String = ""
+    private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
+    private lateinit var googleSignInClient: GoogleSignInClient
+    private val signInLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data: Intent? = result.data
+                val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+                try {
+                    val account = task.getResult(ApiException::class.java)
+                    firebaseAuthWithGoogle(account?.idToken)
+                } catch (e: ApiException) {
+                    updateUI(null)
+                }
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +60,11 @@ class SignUpFragment : Fragment() {
     ): View {
         binding = FragmentSignUpBinding.inflate(inflater, container, false)
         auth = Firebase.auth
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+        googleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
         return binding.root
     }
 
@@ -60,7 +84,36 @@ class SignUpFragment : Fragment() {
         btnConfirm.setOnClickListener {
             verifyPhoneNumberWithCode(storedVerificationId, etCode.text.toString())
         }
+        binding.btnGoogle.setOnClickListener {
+            signInWithGoogle()
+        }
     }
+
+    private fun signInWithGoogle() {
+        val signInIntent = googleSignInClient.signInIntent
+        signInLauncher.launch(signInIntent)
+    }
+
+    private fun firebaseAuthWithGoogle(idToken: String?) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        auth?.signInWithCredential(credential)?.addOnCompleteListener(requireActivity()) { task ->
+                if (task.isSuccessful) {
+                    val user = auth?.currentUser
+                    updateUI(user)
+                } else {
+                    updateUI(null)
+                }
+            }
+    }
+
+    private fun updateUI(user: FirebaseUser?) {
+        if (user != null) {
+            findNavController().navigate(R.id.noteFragment)
+        } else {
+            Toast.makeText(requireContext(), "Аутентификация не удалась", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 
     private fun verifyPhoneNumberWithCode(verificationId: String?, code: String) {
         val credential = PhoneAuthProvider.getCredential(verificationId!!, code)
@@ -84,14 +137,14 @@ class SignUpFragment : Fragment() {
         }
 
         override fun onVerificationFailed(e: FirebaseException) {
-            Log.w(TAG, "onVerificationId",e)
+            Log.w(TAG, "onVerificationId", e)
         }
 
         override fun onCodeSent(
             verificationId: String,
             token: PhoneAuthProvider.ForceResendingToken
         ) {
-            Log.d(TAG,"onCodeSend:$verificationId")
+            Log.d(TAG, "onCodeSend:$verificationId")
             storedVerificationId = verificationId
             resendToken = token
         }

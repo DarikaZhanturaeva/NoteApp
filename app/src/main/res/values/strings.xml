@@ -10,4 +10,6 @@
     <string name="your_code">Ваш код</string>
     <string name="phone">+996 707 777 777</string>
     <string name="sign_up">Регистрация по номеру</string>
+    <string name="google">Продолжить через Google</string>
+    <string name="default_web_client_id">1058783115734-4incjfb9k5dp663e5d03ge1p80edf0aq.apps.googleusercontent.com</string>
 </resources>
