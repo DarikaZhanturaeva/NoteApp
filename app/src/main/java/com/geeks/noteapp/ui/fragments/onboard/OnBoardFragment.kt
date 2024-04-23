@@ -47,7 +47,7 @@ class OnBoardFragment : Fragment() {
             }
         }
         binding.tvGetStarted.setOnClickListener {
-            findNavController().navigate(R.id.noteFragment)
+            findNavController().navigate(R.id.signUpFragment)
         }
     }
 
